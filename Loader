@@ -1,6 +1,6 @@
-local library = {}
+local Library = {}
 
-function library:CreateWindow(title, ver)
+function Library:CreateWindow(title, ver)
 	local LibraryUI = Instance.new("ScreenGui")
 	local Window = Instance.new("Frame")
 	local UICorner = Instance.new("UICorner")
@@ -83,31 +83,15 @@ function library:CreateWindow(title, ver)
 		TabButtons.CanvasSize = UDim2.new(0, TabButtons.CanvasSize.Y + child.Size.Y)
 	end)
 	
-	local window = {}
+	local Window = {}
 	
-	local CurrentTab  = nil
+	local CurrentTab  = nil	
 	
-	local function UpdateTab(tab)
-		if CurrentTab ~= nil then
-			local OldTabButton = TabButtons:FindFirstChild(CurrentTab .. "TabButton")
-
-			OldTabButton.BackgroundTransparency = 1
-			OldTabButton.Font = Enum.Font.SourceSans
-		end
-		
-		CurrentTab = tab
-		local TabButton = TabButtons:FindFirstChild(CurrentTab .. "TabButton")
-
-		TabButton.BackgroundTransparency = 0
-		TabButton.Font = Enum.Font.SourceSansBold
-	end
-	
-	
-	function window:CreateTab(name)
+	function Window:CreateTab(name)
 		local TabButton = Instance.new("TextButton")
 		
 		if CurrentTab == nil then
-			UpdateTab(name)
+			CurrentTab = name
 		end
 
 		TabButton.Parent = TabButtons
@@ -120,13 +104,11 @@ function library:CreateWindow(title, ver)
 		TabButton.Size = UDim2.new(1, 0, 0, 40)
 		
 		TabButton.Activated:Connect(function()
-			if CurrentTab ~= name then
-				UpdateTab(name)
-			end
+			
 		end)
 	end
 	
-	return window;
+	return Window;
 end
 
-return library
+return Library

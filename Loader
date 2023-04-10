@@ -89,19 +89,23 @@ function Library:CreateWindow(title, ver)
 	
 	function Window:CreateTab(name)
 		local TabButton = Instance.new("TextButton")
+		local UITextSizeConstraint_3 = Instance.new("UITextSizeConstraint")
 		
 		if CurrentTab == nil then
 			CurrentTab = name
 		end
 
 		TabButton.Parent = TabButtons
-		TabButton.TextSize = 19.000
+		TabButton.TextSize = 22.000
 		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabButton.BackgroundColor3 = Color3.fromRGB(28, 137, 242)
 		TabButton.BackgroundTransparency = 1
 		TabButton.Text = name .. "TabButton"
 		TabButton.BorderSizePixel = 0
 		TabButton.Size = UDim2.new(1, 0, 0, 40)
+		
+		UITextSizeConstraint_2.Parent = TabButton
+		UITextSizeConstraint_2.MaxTextSize = 22
 		
 		TabButton.Activated:Connect(function()
 			

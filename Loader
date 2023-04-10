@@ -13,8 +13,6 @@ function library:CreateWindow(title, ver)
 	local TabButtons = Instance.new("ScrollingFrame")
 	local UIListLayout = Instance.new("UIListLayout")
 	
-	if game.StarterGui:FindFirstChild("LibraryUI") then game.StarterGui:FindFirstChild("LibraryUI"):Destroy() end
-	
 	LibraryUI.Name = "LibraryUI"
 	LibraryUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -128,7 +126,7 @@ function library:CreateWindow(title, ver)
 		end)
 	end
 	
-	return Window
+	return window;
 end
 
 return library

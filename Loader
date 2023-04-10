@@ -1,0 +1,110 @@
+local Library = {}
+
+function Library:NewWindow(title, ver)
+	local Window = Instance.new("Frame")
+	Window.Name = "Window"
+	Window.Parent = game.StarterGui.ScreenGui
+	Window.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)
+	Window.BorderSizePixel = 0
+	Window.Position = UDim2.new(0.25, 0, 0.200000003, 0)
+	Window.Size = UDim2.new(0.5, 0, 0.600000024, 0)
+	
+	local Sidebar = Instance.new("Frame")
+	Sidebar.Name = "Sidebar"
+	Sidebar.Parent = Window
+	Sidebar.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+	Sidebar.BorderSizePixel = 0
+	Sidebar.Size = UDim2.new(0.25, 0, 1, 0)
+	Sidebar.ZIndex = 2
+	
+	local Info = Instance.new("Frame")
+	Info.Name = "Info"
+	Info.Parent = Sidebar
+	Info.BackgroundColor3 = Color3.new(1, 1, 1)
+	Info.BackgroundTransparency = 1
+	Info.Size = UDim2.new(1, 0, 0.200000003, 0)
+	Info.ZIndex = 3
+	
+	local Title = Instance.new("TextLabel")
+	Title.Name = "Title"
+	Title.Parent = Info
+	Title.BackgroundColor3 = Color3.new(1, 1, 1)
+	Title.BackgroundTransparency = 1
+	Title.Size = UDim2.new(1, 0, 0.5, 0)
+	Title.ZIndex = 4
+	Title.Font = Enum.Font.SourceSansBold
+	Title.Text = title
+	Title.TextColor3 = Color3.new(1, 1, 1)
+	Title.TextSize = 24
+	Title.TextYAlignment = Enum.TextYAlignment.Bottom
+	
+	local vertext = Instance.new("TextLabel")
+	vertext.Name = "Version"
+	vertext.Parent = Info
+	vertext.BackgroundColor3 = Color3.new(1, 1, 1)
+	vertext.BackgroundTransparency = 1
+	vertext.Position = UDim2.new(0, 0, 0.5, 0)
+	vertext.Size = UDim2.new(1, 0, 0.5, 0)
+	vertext.ZIndex = 4
+	vertext.Font = Enum.Font.SourceSans
+	vertext.Text = ver
+	vertext.TextColor3 = Color3.new(0.796079, 0.796079, 0.796079)
+	vertext.TextSize = 16
+	vertext.TextWrapped = true
+	vertext.TextYAlignment = Enum.TextYAlignment.Top
+	
+	local Divider = Instance.new("Frame")
+	Divider.Name = "Divider"
+	Divider.Parent = Info
+	Divider.BackgroundColor3 = Color3.new(1, 1, 1)
+	Divider.BorderSizePixel = 0
+	Divider.Position = UDim2.new(0.0500000007, 0, 0.975000024, 0)
+	Divider.Size = UDim2.new(0.899999976, 0, 0.0250000004, 0)
+	Divider.ZIndex = 4
+	
+	local TabButtons = Instance.new("ScrollingFrame")
+	TabButtons.Name = "TabButtons"
+	TabButtons.Parent = Sidebar
+	TabButtons.Active = true
+	TabButtons.BackgroundColor3 = Color3.new(1, 1, 1)
+	TabButtons.BackgroundTransparency = 1
+	TabButtons.BorderSizePixel = 0
+	TabButtons.Position = UDim2.new(0, 0, 0.25, 0)
+	TabButtons.Size = UDim2.new(1, 0, 0.75, 0)
+	TabButtons.ZIndex = 4
+	TabButtons.CanvasSize = UDim2.new(0, 0, 0, 0)
+	TabButtons.ScrollBarThickness = 6
+	
+	local UIListLayout = Instance.new("UIListLayout")
+	UIListLayout.Parent = TabButtons
+	UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	
+	local Window = {}
+	
+	function Window:NewTab(name)
+		local Button = Instance.new("TextButton")
+		Button.Name = name .. "TabButton"
+		Button.Parent = game.StarterGui.ScreenGui.Window.Sidebar.TabButtons
+		Button.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)
+		Button.Size = UDim2.new(0.899999976, 0, 0, 35)
+		Button.ZIndex = 4
+		Button.Font = Enum.Font.SourceSansBold
+		Button.TextColor3 = Color3.new(1, 1, 1)
+		Button.TextSize = 20
+		Button.Text = name
+		Button.TextWrapped = true
+
+		local Tab = Instance.new("Frame")
+		Tab.Name = name .. "Tab"
+		Tab.Parent = game.StarterGui.ScreenGui.Window
+		Tab.BackgroundColor3 = Color3.new(1, 1, 1)
+		Tab.BackgroundTransparency = 1
+		Tab.Position = UDim2.new(0.25, 0, 0, 0)
+		Tab.Size = UDim2.new(0.75, 0, 1, 0)
+	end
+	
+	return Window
+end
+
+return Library

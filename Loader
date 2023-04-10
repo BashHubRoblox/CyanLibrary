@@ -1,114 +1,91 @@
-local Library = {}
+local library = {}
 
-function Library:NewWindow(title, ver)
-	local Gui = Instance.new("ScreenGui")
-	Gui.Name = title
-	Gui.IgnoreGuiInset = true
-	
+function library:CreateWindow(title, ver)
+	local LibraryUI = Instance.new("ScreenGui")
 	local Window = Instance.new("Frame")
-	Window.Name = "Window"
-	Window.Parent = Gui
-	Window.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)
-	Window.BorderSizePixel = 0
-	Window.Position = UDim2.new(0.25, 0, 0.200000003, 0)
-	Window.Size = UDim2.new(0.5, 0, 0.600000024, 0)
-	
+	local UICorner = Instance.new("UICorner")
 	local Sidebar = Instance.new("Frame")
+	local UICorner_2 = Instance.new("UICorner")
+	local Title = Instance.new("TextLabel")
+	local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+	local Vertext = Instance.new("TextLabel")
+	local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
+	local TabButtons = Instance.new("ScrollingFrame")
+
+	LibraryUI.Name = "LibraryUI"
+	LibraryUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+	Window.Name = "Window"
+	Window.Parent = LibraryUI
+	Window.BackgroundColor3 = Color3.fromRGB(40, 42, 48)
+	Window.Position = UDim2.new(0.224960864, 0, 0.224184781, 0)
+	Window.Size = UDim2.new(0.550000012, 0, 0.550000012, 0)
+
+	UICorner.CornerRadius = UDim.new(0, 5)
+	UICorner.Parent = Window
+
 	Sidebar.Name = "Sidebar"
 	Sidebar.Parent = Window
-	Sidebar.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
-	Sidebar.BorderSizePixel = 0
-	Sidebar.Size = UDim2.new(0.25, 0, 1, 0)
-	Sidebar.ZIndex = 2
-	
-	local Info = Instance.new("Frame")
-	Info.Name = "Info"
-	Info.Parent = Sidebar
-	Info.BackgroundColor3 = Color3.new(1, 1, 1)
-	Info.BackgroundTransparency = 1
-	Info.Size = UDim2.new(1, 0, 0.200000003, 0)
-	Info.ZIndex = 3
-	
-	local Title = Instance.new("TextLabel")
+	Sidebar.BackgroundColor3 = Color3.fromRGB(38, 39, 43)
+	Sidebar.Size = UDim2.new(0.300000012, 0, 1, 0)
+
+	UICorner_2.CornerRadius = UDim.new(0, 5)
+	UICorner_2.Parent = Sidebar
+
 	Title.Name = "Title"
-	Title.Parent = Info
-	Title.BackgroundColor3 = Color3.new(1, 1, 1)
-	Title.BackgroundTransparency = 1
-	Title.Size = UDim2.new(1, 0, 0.5, 0)
-	Title.ZIndex = 4
+	Title.Parent = Sidebar
+	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Title.BackgroundTransparency = 1.000
+	Title.Size = UDim2.new(1, 0, 0.125, 0)
 	Title.Font = Enum.Font.SourceSansBold
 	Title.Text = title
-	Title.TextColor3 = Color3.new(1, 1, 1)
-	Title.TextSize = 24
+	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Title.TextScaled = true
+	Title.TextSize = 49.000
+	Title.TextWrapped = true
 	Title.TextYAlignment = Enum.TextYAlignment.Bottom
-	
-	local vertext = Instance.new("TextLabel")
-	vertext.Name = "Version"
-	vertext.Parent = Info
-	vertext.BackgroundColor3 = Color3.new(1, 1, 1)
-	vertext.BackgroundTransparency = 1
-	vertext.Position = UDim2.new(0, 0, 0.5, 0)
-	vertext.Size = UDim2.new(1, 0, 0.5, 0)
-	vertext.ZIndex = 4
-	vertext.Font = Enum.Font.SourceSans
-	vertext.Text = ver
-	vertext.TextColor3 = Color3.new(0.796079, 0.796079, 0.796079)
-	vertext.TextSize = 16
-	vertext.TextWrapped = true
-	vertext.TextYAlignment = Enum.TextYAlignment.Top
-	
-	local Divider = Instance.new("Frame")
-	Divider.Name = "Divider"
-	Divider.Parent = Info
-	Divider.BackgroundColor3 = Color3.new(1, 1, 1)
-	Divider.BorderSizePixel = 0
-	Divider.Position = UDim2.new(0.0500000007, 0, 0.975000024, 0)
-	Divider.Size = UDim2.new(0.899999976, 0, 0.0250000004, 0)
-	Divider.ZIndex = 4
-	
-	local TabButtons = Instance.new("ScrollingFrame")
+
+	UITextSizeConstraint.Parent = Title
+	UITextSizeConstraint.MaxTextSize = 35
+
+	Vertext.Name = "Vertext"
+	Vertext.Parent = Sidebar
+	Vertext.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Vertext.BackgroundTransparency = 1.000
+	Vertext.Position = UDim2.new(0, 0, 0.125, 0)
+	Vertext.Size = UDim2.new(1, 0, 0.0500000007, 0)
+	Vertext.Font = Enum.Font.SourceSans
+	Vertext.Text = ver
+	Vertext.TextColor3 = Color3.fromRGB(255, 255, 255)
+	Vertext.TextScaled = true
+	Vertext.TextSize = 49.000
+	Vertext.TextWrapped = true
+	Vertext.TextYAlignment = Enum.TextYAlignment.Top
+
+	UITextSizeConstraint_2.Parent = Vertext
+	UITextSizeConstraint_2.MaxTextSize = 35
+
 	TabButtons.Name = "TabButtons"
 	TabButtons.Parent = Sidebar
 	TabButtons.Active = true
-	TabButtons.BackgroundColor3 = Color3.new(1, 1, 1)
-	TabButtons.BackgroundTransparency = 1
-	TabButtons.BorderSizePixel = 0
-	TabButtons.Position = UDim2.new(0, 0, 0.25, 0)
-	TabButtons.Size = UDim2.new(1, 0, 0.75, 0)
-	TabButtons.ZIndex = 4
+	TabButtons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TabButtons.BackgroundTransparency = 1.000
+	TabButtons.Position = UDim2.new(0, 0, 0.200000003, 0)
+	TabButtons.Size = UDim2.new(1, 0, 0.800000012, 0)
 	TabButtons.CanvasSize = UDim2.new(0, 0, 0, 0)
-	TabButtons.ScrollBarThickness = 6
+	TabButtons.ScrollBarThickness = 7
 	
-	local UIListLayout = Instance.new("UIListLayout")
-	UIListLayout.Parent = TabButtons
-	UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	TabButtons.ChildAdded:Connect(function(child)
+		TabButtons.CanvasSize = UDim2.new(0, TabButtons.CanvasSize.Y + child.Size.Y)
+	end)
 	
-	local Window = {}
+	local window = {}
 	
-	function Window:NewTab(name)
-		local Button = Instance.new("TextButton")
-		Button.Name = name .. "TabButton"
-		Button.Parent = TabButtons
-		Button.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)
-		Button.Size = UDim2.new(0.899999976, 0, 0, 35)
-		Button.ZIndex = 4
-		Button.Font = Enum.Font.SourceSansBold
-		Button.TextColor3 = Color3.new(1, 1, 1)
-		Button.TextSize = 20
-		Button.Text = name
-		Button.TextWrapped = true
-
-		local Tab = Instance.new("Frame")
-		Tab.Name = name .. "Tab"
-		Tab.Parent = Window
-		Tab.BackgroundColor3 = Color3.new(1, 1, 1)
-		Tab.BackgroundTransparency = 1
-		Tab.Position = UDim2.new(0.25, 0, 0, 0)
-		Tab.Size = UDim2.new(0.75, 0, 1, 0)
-	end
+	--[[function window:CreateTab()
+		
+	end]]
 	
 	return Window
 end
 
-return Library
+return library

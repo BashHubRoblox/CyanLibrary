@@ -11,7 +11,10 @@ function library:CreateWindow(title, ver)
 	local Vertext = Instance.new("TextLabel")
 	local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
 	local TabButtons = Instance.new("ScrollingFrame")
-
+	local UIListLayout = Instance.new("UIListLayout")
+	
+	if game.StarterGui:FindFirstChild("LibraryUI") then game.StarterGui:FindFirstChild("LibraryUI"):Destroy() end
+	
 	LibraryUI.Name = "LibraryUI"
 	LibraryUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
@@ -75,15 +78,55 @@ function library:CreateWindow(title, ver)
 	TabButtons.CanvasSize = UDim2.new(0, 0, 0, 0)
 	TabButtons.ScrollBarThickness = 7
 	
+	UIListLayout.Parent = TabButtons
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+	
 	TabButtons.ChildAdded:Connect(function(child)
 		TabButtons.CanvasSize = UDim2.new(0, TabButtons.CanvasSize.Y + child.Size.Y)
 	end)
 	
 	local window = {}
 	
-	--[[function window:CreateTab()
+	local CurrentTab  = nil
+	
+	local function UpdateTab(tab)
+		if CurrentTab ~= nil then
+			local OldTabButton = TabButtons:FindFirstChild(CurrentTab .. "TabButton")
+
+			OldTabButton.BackgroundTransparency = 1
+			OldTabButton.Font = Enum.Font.SourceSans
+		end
 		
-	end]]
+		CurrentTab = tab
+		local TabButton = TabButtons:FindFirstChild(CurrentTab .. "TabButton")
+
+		TabButton.BackgroundTransparency = 0
+		TabButton.Font = Enum.Font.SourceSansBold
+	end
+	
+	
+	function window:CreateTab(name)
+		local TabButton = Instance.new("TextButton")
+		
+		if CurrentTab == nil then
+			UpdateTab(name)
+		end
+
+		TabButton.Parent = TabButtons
+		TabButton.TextSize = 19.000
+		TabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TabButton.BackgroundColor3 = Color3.fromRGB(28, 137, 242)
+		TabButton.BackgroundTransparency = 1
+		TabButton.Text = name .. "TabButton"
+		TabButton.BorderSizePixel = 0
+		TabButton.Size = UDim2.new(1, 0, 0, 40)
+		
+		TabButton.Activated:Connect(function()
+			if CurrentTab ~= name then
+				UpdateTab(name)
+			end
+		end)
+	end
 	
 	return Window
 end

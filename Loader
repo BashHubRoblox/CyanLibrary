@@ -1,9 +1,13 @@
 local Library = {}
 
 function Library:NewWindow(title, ver)
+	local Gui = Instance.new("ScreenGui")
+	Gui.Name = title
+	Gui.IgnoreGuiInset = true
+	
 	local Window = Instance.new("Frame")
 	Window.Name = "Window"
-	Window.Parent = game.StarterGui.ScreenGui
+	Window.Parent = Gui
 	Window.BackgroundColor3 = Color3.new(0.211765, 0.211765, 0.211765)
 	Window.BorderSizePixel = 0
 	Window.Position = UDim2.new(0.25, 0, 0.200000003, 0)
